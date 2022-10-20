@@ -1,0 +1,23 @@
+<form [formGroup]="busqueda" (ngsubmit)="submit()">
+  <mat-form-field>
+    <input
+      formControlName="anyo"
+      matInput
+      type="number"
+      min="0"
+      [value]="year"
+    />
+  </mat-form-field>
+  <button mat-icon-button (click)="submit()" [disabled]="busqueda.invalid">
+    <mat-icon>search</mat-icon>
+  </button>
+</form>
+<div id="container">
+  <mat-card *ngFor="let player of jugadoresLigaStd">
+    <mat-card-header
+      >{{ player.firstName }}&nbsp;<strong>{{
+        player.lastName
+      }}</strong></mat-card-header
+    >
+  </mat-card>
+</div>
