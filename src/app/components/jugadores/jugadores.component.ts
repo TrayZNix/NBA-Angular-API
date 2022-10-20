@@ -17,34 +17,70 @@ export class JugadoresComponent implements OnInit {
   constructor(private jugadorService: JugadoresService) {}
 
   year: number = 2022;
-  busqueda = new FormGroup({
-    anyo: new FormControl(this.year, [
-      Validators.required,
-      Validators.min(2010),
-    ]),
+  parametrosFiltro = new FormGroup({
+    anyo: new FormControl(
+      '',
+      Validators.compose([Validators.required, Validators.min(2010)])
+    ),
+    std: new FormControl(true),
+    scrm: new FormControl(true),
+    utah: new FormControl(true),
+    vega: new FormControl(true),
   });
+  terms = new FormControl('', Validators.pattern('^[a-zA-Z]*$'));
   jugadoresLigaStd: Standard[] = [];
   jugadoresLigaAfrica: any[] = [];
   jugadoresLigaSacramento: Sacramento[] = [];
   jugadoresLigaVegas: Vega[] = [];
   jugadoresLigaUtah: Utah[] = [];
 
+  jugadores: Standard[] = [];
+  jugadoresFiltrados: Standard[] = [];
+
   ngOnInit(): void {
     this.actualizarLista();
   }
 
   actualizarLista() {
+    this.jugadores = [];
     this.jugadorService.findallPlayers(this.year).subscribe((response) => {
-      this.jugadoresLigaStd = response.league.standard;
-      this.jugadoresLigaSacramento = response.league.sacramento;
-      this.jugadoresLigaUtah = response.league.utah;
-      this.jugadoresLigaVegas = response.league.vegas;
-      this.jugadoresLigaAfrica = response.league.africa;
+      if (this.parametrosFiltro.controls.std.value) {
+        response.league.standard.forEach((player) => {
+          this.jugadores.push(player);
+        });
+      }
+      if (this.parametrosFiltro.controls.scrm.value) {
+        response.league.sacramento.forEach((player) => {
+          this.jugadores.push(player);
+        });
+      }
+      if (this.parametrosFiltro.controls.utah.value) {
+        response.league.utah.forEach((player) => {
+          this.jugadores.push(player);
+        });
+      }
+      if (this.parametrosFiltro.controls.vega.value) {
+        response.league.vegas.forEach((player) => {
+          this.jugadores.push(player);
+        });
+      }
+      this.jugadoresFiltrados = this.jugadores;
+      this.filtrar_jugadores();
+      // this.jugadoresLigaAfrica = response.league.africa;
     });
   }
-
+  filtrar_jugadores() {
+    let terminos = (this.terms.value as string).toLowerCase();
+    this.jugadoresFiltrados = this.jugadores.filter((jugador) => {
+      return (
+        jugador.firstName.toLowerCase().includes(terminos) ||
+        jugador.lastName.toLowerCase().includes(terminos)
+      );
+    });
+  }
   submit() {
-    this.year = Number(this.busqueda.controls.anyo.value);
+    console.log(this.parametrosFiltro);
+    this.year = Number(this.parametrosFiltro.controls.anyo.value);
     this.actualizarLista();
   }
 }

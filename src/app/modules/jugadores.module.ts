@@ -6,6 +6,7 @@ import { MaterialImportsModule } from './material-imports.module';
 import { HttpClientModule } from '@angular/common/http';
 import { JugadoresService } from '../services/jugadores.service';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 @NgModule({
   declarations: [JugadoresComponent],

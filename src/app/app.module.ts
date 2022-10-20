@@ -8,6 +8,7 @@ import { FlexModule } from '@angular/flex-layout';
 import { JugadoresModule } from './modules/jugadores.module';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 @NgModule({
   declarations: [AppComponent],
