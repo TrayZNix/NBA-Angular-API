@@ -1,0 +1,21 @@
+footer .copyright {
+  float: right;
+  letter-spacing: 0.25em;
+  padding: 15px;
+}
+footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 60px;
+  color: white;
+  background-color: #2B2D42;
+  padding: 10px;
+}
+
+footer .disclaimer{
+  float: left;
+  text-decoration: none;
+  letter-spacing: 0.25em;
+  padding: 15px;
+}
