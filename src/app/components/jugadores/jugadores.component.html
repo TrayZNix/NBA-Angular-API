@@ -14,7 +14,6 @@
         name="anyo"
         placeholder="Año de liga"
       >
-        <mat-option></mat-option>
         <mat-option value="2022">2022</mat-option>
         <mat-option value="2021">2021</mat-option>
         <mat-option value="2020">2020</mat-option>
@@ -28,14 +27,22 @@
         <mat-option value="2012">2012</mat-option>
       </mat-select>
     </mat-form-field>
-    <div>
-      <div fxLayout="row" fxLayoutAlign="space-between" fxLayoutGap="10px">
+
+    <div
+      fxLayout="column"
+      fxLayoutAlign="space-between space-between"
+      fxLayoutGap="10px"
+    >
+      <div fxLayoutAlign="space-evenly space-evenly">
         <mat-checkbox value="std" name="estandar" formControlName="std">
           Liga estandar
         </mat-checkbox>
+        &nbsp;
         <mat-checkbox value="std" name="sacramento" formControlName="scrm">
           Liga Sacramento
         </mat-checkbox>
+      </div>
+      <div fxLayoutAlign="space-evenly space-evenly">
         <mat-checkbox value="std" name="utah" formControlName="utah">
           Liga Utah
         </mat-checkbox>
@@ -44,14 +51,25 @@
         </mat-checkbox>
       </div>
     </div>
-    <button
-      mat-raised-button
-      color="primary"
-      (click)="submit()"
-      [disabled]="parametrosFiltro.invalid"
-    >
-      Filtrar
-    </button>
+    <div div fxLayout="row" fxLayoutAlign="center center">
+      <button
+        (click)="resetFiltro()"
+        color="primary"
+        mat-mini-fab
+        matTooltip="Resetear filtros"
+      >
+        <mat-icon fxLayoutAlign="center center">restart_alt</mat-icon>
+      </button>
+      <button
+        id="botonFiltro"
+        mat-raised-button
+        color="primary"
+        (click)="submit()"
+        [disabled]="parametrosFiltro.invalid"
+      >
+        Filtrar
+      </button>
+    </div>
   </form>
   <mat-form-field class="buscador">
     <input
@@ -78,7 +96,7 @@
     <p>Cargando datos...</p>
   </div>
   <div id="container" fxLayout="row wrap" fxLayoutAlign="center" *ngIf="loaded">
-    <div class="paginador">
+    <div class="paginador" *ngIf="!(jugadoresPaginados.length == 0)">
       <mat-paginator
         fxLayoutAlign="center end"
         [length]="this.jugadoresFiltrados.length"
@@ -89,7 +107,27 @@
       >
       </mat-paginator>
     </div>
-    <mat-card *ngFor="let player of jugadoresPaginados">
+    <div *ngIf="jugadoresPaginados.length == 0">
+      <mat-card
+        class="errorCard"
+        fxLayout="column wrap"
+        fxFlexAlign="center center"
+      >
+        <mat-card-header>
+          <h1>¡Lo sentimos!</h1>
+        </mat-card-header>
+        <mat-card-content fxLayout="column wrap" fxLayoutAlign="center center">
+          <p>No hemos conseguido encontrar lo que buscabas</p>
+          <p>Prueba cambiando o reseteando los filtros de búsqueda :)</p>
+        </mat-card-content>
+        <mat-card-actions fxLayoutAlign="center center">
+          <button mat-raised-button color="accent" (click)="resetFiltro()">
+            Resetear filtros
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+    <mat-card *ngFor="let player of jugadoresPaginados" class="card">
       <mat-card-header fxLayout="column wrap" fxLayoutAlign="center center">
         <h1 fxFlexAlign="center">
           {{ player.firstName }} <strong>{{ player.lastName }}</strong>
@@ -107,7 +145,7 @@
               player.personId +
               '.png'
             "
-            onerror="this.src='data:image/png;base64,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'"
+            onerror="{this.src='../../assets/images/userNotFound.png', this.class='errorNotFound'}"
           />
         </div>
         <img
@@ -120,7 +158,7 @@
         />
       </mat-card-content>
     </mat-card>
-    <div class="paginador">
+    <div class="paginador" *ngIf="!(jugadoresPaginados.length == 0)">
       <mat-paginator
         fxLayoutAlign="center end"
         [length]="this.jugadoresFiltrados.length"

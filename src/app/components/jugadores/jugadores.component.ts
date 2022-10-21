@@ -16,6 +16,8 @@ import { JugadoresService } from 'src/app/services/jugadores.service';
   styleUrls: ['./jugadores.component.scss'],
 })
 export class JugadoresComponent implements OnInit {
+  equipos: import('c:/Users/rober/Desktop/2ºDAM/PMYDM/ANGULAR/NBA-Angular-API/src/app/interfaces/equiposRoberto.interface').Sacramento[] =
+    [];
   constructor(
     private jugadorService: JugadoresService,
     private equiposService: EquiposService
@@ -24,11 +26,11 @@ export class JugadoresComponent implements OnInit {
   year: number = 2022;
   parametrosFiltro = new FormGroup({
     anyo: new FormControl(
-      '',
+      '2022',
       Validators.compose([Validators.required, Validators.min(2010)])
     ),
-    std: new FormControl(true),
     scrm: new FormControl(true),
+    std: new FormControl(true),
     utah: new FormControl(true),
     vega: new FormControl(true),
   });
@@ -38,14 +40,13 @@ export class JugadoresComponent implements OnInit {
   jugadores: Standard[] = [];
   jugadoresFiltrados: Standard[] = [];
   jugadoresPaginados: Standard[] = [];
-  equipos: import('c:/Users/Admin/Desktop/NBA-Angular-API/src/app/interfaces/equiposRoberto.interface').Standard[] =
-    [];
 
   loaded: boolean = false;
 
   totalPages: number = 0;
   pageEvent!: PageEvent;
   ngOnInit(): void {
+    this.actualizarEquipos();
     this.actualizarLista();
     this.pageEvent = new PageEvent();
     this.pageEvent.pageSize = 20;
@@ -55,12 +56,9 @@ export class JugadoresComponent implements OnInit {
   actualizarLista() {
     this.jugadores = [];
     this.jugadorService.findallPlayers(this.year).subscribe((response) => {
-      let contadorId = 0;
       this.loaded = false;
       if (this.parametrosFiltro.controls.std.value) {
         response.league.standard.forEach((player) => {
-          player.id = contadorId;
-          contadorId += 1;
           this.jugadores.push(player);
         });
       }
@@ -80,14 +78,37 @@ export class JugadoresComponent implements OnInit {
         });
       }
       this.jugadoresFiltrados = this.jugadores;
-      this.filtrar_jugadores();
+      setTimeout(() => {
+        this.filtrar_jugadores();
+      }, 2000);
       this.totalPages = Math.ceil(
         this.jugadoresFiltrados.length / this.pageEvent.pageSize
       );
       this.loaded = true;
     });
   }
+  actualizarRelacionEquipoJugador() {
+    this.jugadores.forEach((jugador) => {
+      jugador.fullTeamName = this.equipos.find((equipo) => {
+        return equipo.teamId == jugador.teamId;
+      })?.fullName as string;
+    });
+  }
+  actualizarEquipos() {
+    this.equiposService.findAllTeams(this.year).subscribe((results) => {
+      this.equipos = [
+        ...results.league.sacramento,
+        ...results.league.standard,
+        ...results.league.utah,
+        ...results.league.vegas,
+      ];
+    });
+    setTimeout(() => this.actualizarRelacionEquipoJugador(), 2000);
+  }
   filtrar_jugadores() {
+    console.log(this.parametrosFiltro.controls.vega);
+    // this.loaded = false;
+    this.actualizarRelacionEquipoJugador();
     this.pageEvent.pageIndex = 0;
     let terminos = (this.terms.value as string).toLowerCase();
     let terminosEquipo = this.equipo.value?.toLowerCase() as string;
@@ -96,17 +117,21 @@ export class JugadoresComponent implements OnInit {
         jugador.firstName.toLowerCase() + ' ' + jugador.lastName.toLowerCase();
       let erbmon =
         jugador.lastName.toLowerCase() + ' ' + jugador.firstName.toLowerCase();
-      let porEquipo: Standard[] = [];
-
+      let equipo = '';
+      try {
+        equipo = jugador.fullTeamName.toLowerCase();
+      } catch (Error) {}
       return (
-        nombre.toLowerCase().includes(terminos) ||
-        erbmon.toLowerCase().includes(terminos)
+        equipo.includes(terminosEquipo) &&
+        (nombre.toLowerCase().includes(terminos) ||
+          erbmon.toLowerCase().includes(terminos))
       );
     });
+
     this.paginar_jugadores();
   }
 
-  paginar_jugadores() {
+  async paginar_jugadores() {
     let indice = this.pageEvent.pageIndex;
     this.jugadoresPaginados = [];
     for (
@@ -119,7 +144,23 @@ export class JugadoresComponent implements OnInit {
       }
     }
   }
+  resetFiltro() {
+    this.year = 2022;
+    this.parametrosFiltro = new FormGroup({
+      anyo: new FormControl(
+        '2022',
+        Validators.compose([Validators.required, Validators.min(2010)])
+      ),
+      scrm: new FormControl(true),
+      std: new FormControl(true),
+      utah: new FormControl(true),
+      vega: new FormControl(true),
+    });
+    this.terms = new FormControl('', Validators.pattern('^[a-zA-Z]*$'));
+    this.equipo = new FormControl('');
 
+    this.actualizarLista();
+  }
   submit() {
     this.year = Number(this.parametrosFiltro.controls.anyo.value);
     this.actualizarLista();

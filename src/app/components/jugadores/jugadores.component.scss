@@ -20,25 +20,50 @@
 }
 
 #filtros {
-  padding-right: 3%;
-  padding-left: 3%;
+  padding: 3%;
+  padding-right: 10%;
 }
 
 #buscador {
-  padding-left: 3%;
+  padding: 3%;
 }
 .paginador {
   width: 100%;
 }
-mat-card {
+.card {
   width: $defaultMatCardWidth;
   margin: 4%;
   overflow: hidden;
   padding: 0;
   height: 235px;
 }
+.errorNotFound {
+  width: 85%;
+}
+mat-card-header {
+  z-index: 2;
+}
+.jugador {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  max-height: 100%;
+  z-index: 0;
+}
+.logo {
+  float: inline-end;
+}
+.errorCard {
+  margin: 4%;
+  overflow: hidden;
+  padding: 0;
+  height: 235px;
+}
+.errorCard mat-card-content {
+  padding: 3%;
+}
 
-mat-card:hover {
+.card:hover {
   box-shadow: 0 8px 8px 8px rgba(0, 0, 0, 0.2), 0 8px 8px 0 rgba(0, 0, 0, 0.14),
     0 8px 8px 0 rgba(0, 0, 0, 0.12) !important;
   transform: translate3d(0, 0, 0);
@@ -61,8 +86,22 @@ mat-card-header {
   max-width: 95%;
 }
 
-@media only screen and (max-width: 680px) {
-  mat-card {
-    width: $defaultMatCardWidth * 2;
+@media only screen and (min-width: 0px) and (max-width: 870px) {
+  .card {
+    width: 75%;
   }
+}
+@media only screen and (min-width: 870px) and (max-width: 1292px) {
+  .card {
+    width: $defaultMatCardWidth + 15%;
+  }
+}
+@media only screen and (min-width: 1292px) {
+  .card {
+    width: $defaultMatCardWidth -10%;
+  }
+}
+
+#botonFiltro {
+  margin-left: 3%;
 }

@@ -122,7 +122,6 @@ export interface Vega {
   temporaryDisplayName: string;
   personId: string;
   teamId: string;
-  team: import('c:/Users/Admin/Desktop/NBA-Angular-API/src/app/interfaces/equiposRoberto.interface').Standard;
   fullTeamName: string;
   jersey: string;
   isActive: boolean;
