@@ -40,6 +40,7 @@ export interface Standard {
   temporaryDisplayName: string;
   personId: string;
   teamId: string;
+  fullTeamName: string;
   jersey: string;
   isActive: boolean;
   pos: string;
@@ -80,6 +81,7 @@ export interface Sacramento {
   temporaryDisplayName: string;
   personId: string;
   teamId: string;
+  fullTeamName: string;
   jersey: string;
   isActive: boolean;
   pos: string;
@@ -120,6 +122,8 @@ export interface Vega {
   temporaryDisplayName: string;
   personId: string;
   teamId: string;
+  team: import('c:/Users/Admin/Desktop/NBA-Angular-API/src/app/interfaces/equiposRoberto.interface').Standard;
+  fullTeamName: string;
   jersey: string;
   isActive: boolean;
   pos: string;
@@ -160,6 +164,7 @@ export interface Utah {
   temporaryDisplayName: string;
   personId: string;
   teamId: string;
+  fullTeamName: string;
   jersey: string;
   isActive: boolean;
   pos: string;

@@ -86,28 +86,21 @@ export class JugadoresComponent implements OnInit {
       );
       this.loaded = true;
     });
-    this.equiposService.findAllTeams(this.year).subscribe((response) => {
-      this.equipos = [
-        ...response.league.standard,
-        ...response.league.sacramento,
-        ...response.league.utah,
-        ...response.league.vegas,
-      ];
-    });
   }
   filtrar_jugadores() {
     this.pageEvent.pageIndex = 0;
     let terminos = (this.terms.value as string).toLowerCase();
-    let terminosEquipo = this.equipo.value as string;
+    let terminosEquipo = this.equipo.value?.toLowerCase() as string;
     this.jugadoresFiltrados = this.jugadores.filter((jugador) => {
       let nombre =
         jugador.firstName.toLowerCase() + ' ' + jugador.lastName.toLowerCase();
       let erbmon =
         jugador.lastName.toLowerCase() + ' ' + jugador.firstName.toLowerCase();
+      let porEquipo: Standard[] = [];
+
       return (
-        jugador.teamId.includes(terminosEquipo) &&
-        (nombre.toLowerCase().includes(terminos) ||
-          erbmon.toLowerCase().includes(terminos))
+        nombre.toLowerCase().includes(terminos) ||
+        erbmon.toLowerCase().includes(terminos)
       );
     });
     this.paginar_jugadores();
