@@ -57,6 +57,7 @@ export interface Standard {
   collegeName: string;
   lastAffiliation: string;
   country: string;
+  id: number;
 }
 
 export interface TeamSitesOnly {
@@ -96,6 +97,7 @@ export interface Sacramento {
   collegeName: string;
   lastAffiliation: string;
   country: string;
+  id: number;
 }
 
 export interface TeamSitesOnly {
@@ -135,6 +137,7 @@ export interface Vega {
   collegeName: string;
   lastAffiliation: string;
   country: string;
+  id: number;
 }
 
 export interface TeamSitesOnly {
@@ -174,6 +177,7 @@ export interface Utah {
   collegeName: string;
   lastAffiliation: string;
   country: string;
+  id: number;
 }
 
 export interface League {
