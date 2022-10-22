@@ -4,6 +4,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialImportsModule } from './modules/material-imports.module';
+import { FooterComponent } from './components/footer/footer.component';
 import { FlexModule } from '@angular/flex-layout';
 import { JugadoresModule } from './modules/jugadores.module';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
@@ -11,7 +12,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, FooterComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
