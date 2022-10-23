@@ -56,7 +56,6 @@ export class JugadoresComponent implements OnInit {
   actualizarLista() {
     this.jugadores = [];
     this.jugadorService.findallPlayers(this.year).subscribe((response) => {
-      this.loaded = false;
       if (this.parametrosFiltro.controls.std.value) {
         response.league.standard.forEach((player) => {
           this.jugadores.push(player);
@@ -80,11 +79,10 @@ export class JugadoresComponent implements OnInit {
       this.jugadoresFiltrados = this.jugadores;
       setTimeout(() => {
         this.filtrar_jugadores();
-      }, 2000);
+      }, 1250);
       this.totalPages = Math.ceil(
         this.jugadoresFiltrados.length / this.pageEvent.pageSize
       );
-      this.loaded = true;
     });
   }
   actualizarRelacionEquipoJugador() {
@@ -106,8 +104,8 @@ export class JugadoresComponent implements OnInit {
     setTimeout(() => this.actualizarRelacionEquipoJugador(), 2000);
   }
   filtrar_jugadores() {
+    this.loaded = false;
     console.log(this.parametrosFiltro.controls.vega);
-    // this.loaded = false;
     this.actualizarRelacionEquipoJugador();
     this.pageEvent.pageIndex = 0;
     let terminos = (this.terms.value as string).toLowerCase();
@@ -131,7 +129,7 @@ export class JugadoresComponent implements OnInit {
     this.paginar_jugadores();
   }
 
-  async paginar_jugadores() {
+  paginar_jugadores() {
     let indice = this.pageEvent.pageIndex;
     this.jugadoresPaginados = [];
     for (
@@ -143,8 +141,10 @@ export class JugadoresComponent implements OnInit {
         this.jugadoresPaginados.push(this.jugadoresFiltrados[contador]);
       }
     }
+    this.loaded = true;
   }
   resetFiltro() {
+    this.loaded = false;
     this.year = 2022;
     this.parametrosFiltro = new FormGroup({
       anyo: new FormControl(

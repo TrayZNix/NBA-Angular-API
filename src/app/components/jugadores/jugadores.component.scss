@@ -3,9 +3,6 @@
 #envoltorio {
   height: 100%;
   width: 100%;
-  display: block;
-  justify-content: center;
-  align-items: center;
   position: relative;
   padding-bottom: 175px;
 }
@@ -102,7 +99,9 @@ mat-card-header {
   //   box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
 }
-
+#cargador {
+  margin: 10%;
+}
 mat-card-header {
   padding-top: 2%;
   background-color: #ed3248;
@@ -119,7 +118,7 @@ mat-card-header {
 
 @media only screen and (min-width: 0px) and (max-width: 870px) {
   .card {
-    width: 75%;
+    width: $defaultMatCardWidth + 50%;
   }
 }
 @media only screen and (min-width: 870px) and (max-width: 1292px) {
