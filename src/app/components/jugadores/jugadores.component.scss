@@ -3,14 +3,16 @@
 #envoltorio {
   height: 100%;
   width: 100%;
-  display: flex;
+  display: block;
   justify-content: center;
   align-items: center;
+  position: relative;
+  padding-bottom: 175px;
 }
-
 #container {
   width: 100%;
   height: 95%;
+  flex-grow: 1;
 }
 
 #containerFiltros {
@@ -133,4 +135,11 @@ mat-card-header {
 
 #botonFiltro {
   margin-left: 3%;
+}
+
+#mainContainer {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  height: max;
 }

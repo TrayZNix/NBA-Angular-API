@@ -10,9 +10,10 @@ import { JugadoresModule } from './modules/jugadores.module';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { FooterModule } from './modules/footer.module';
 
 @NgModule({
-  declarations: [AppComponent, FooterComponent],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -22,6 +23,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     JugadoresModule,
     HttpClientModule,
     ReactiveFormsModule,
+    FooterModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
