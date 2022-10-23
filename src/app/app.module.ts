@@ -6,17 +6,24 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialImportsModule } from './modules/material-imports.module';
 import { FooterComponent } from './components/footer/footer.component';
 import { FlexModule } from '@angular/flex-layout';
-
+import { JugadoresModule } from './modules/jugadores.module';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { FooterModule } from './modules/footer.module';
 
 @NgModule({
-  declarations: [AppComponent, FooterComponent],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialImportsModule,
     FlexModule,
-
+    JugadoresModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+    FooterModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
