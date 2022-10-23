@@ -25,72 +25,12 @@ export interface Team {
   divName: string;
 }
 
-export interface Africa {
-  isNBAFranchise: boolean;
-  isAllStar: boolean;
-  city: string;
-  altCityName: string;
-  fullName: string;
-  tricode: string;
-  teamId: string;
-  nickname: string;
-  urlName: string;
-  teamShortName: string;
-  confName: string;
-  divName: string;
-}
-
-export interface Sacramento {
-  isNBAFranchise: boolean;
-  isAllStar: boolean;
-  city: string;
-  altCityName: string;
-  fullName: string;
-  tricode: string;
-  teamId: string;
-  nickname: string;
-  urlName: string;
-  teamShortName: string;
-  confName: string;
-  divName: string;
-}
-
-export interface Vega {
-  isNBAFranchise: boolean;
-  isAllStar: boolean;
-  city: string;
-  altCityName: string;
-  fullName: string;
-  tricode: string;
-  teamId: string;
-  nickname: string;
-  urlName: string;
-  teamShortName: string;
-  confName: string;
-  divName: string;
-}
-
-export interface Utah {
-  isNBAFranchise: boolean;
-  isAllStar: boolean;
-  city: string;
-  altCityName: string;
-  fullName: string;
-  tricode: string;
-  teamId: string;
-  nickname: string;
-  urlName: string;
-  teamShortName: string;
-  confName: string;
-  divName: string;
-}
-
 export interface League {
   standard: Team[];
-  africa: Africa[];
-  sacramento: Sacramento[];
-  vegas: Vega[];
-  utah: Utah[];
+  africa: Team[];
+  sacramento: Team[];
+  vegas: Team[];
+  utah: Team[];
 }
 
 export interface TeamResponse {

@@ -13,7 +13,7 @@ export class EquiposService {
   constructor(private http: HttpClient) { }
 
   getTeams(year: number): Observable<TeamResponse> {
-    return this.http.get<TeamResponse>(`${API_BASE_URL}10s/prod/v1/${year}/teams.json`);
+    return this.http.get<TeamResponse>(`${API_BASE_URL}/${year}/teams.json`);
   }
 
 

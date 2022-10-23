@@ -7,6 +7,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialImportsModule } from './Modules/material-imports.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ListaEquiposComponent } from './components/lista-equipos/lista-equipos.component';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -20,7 +22,9 @@ import { ListaEquiposComponent } from './components/lista-equipos/lista-equipos.
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialImportsModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
