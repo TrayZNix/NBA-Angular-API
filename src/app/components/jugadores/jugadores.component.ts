@@ -3,7 +3,7 @@ import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { PageEvent } from '@angular/material/paginator';
 import {
   Sacramento,
-  Standard,
+  StandardPlayer,
   Utah,
   Vega,
 } from 'src/app/interfaces/jugadores.interface';
@@ -36,9 +36,9 @@ export class JugadoresComponent implements OnInit {
   equipo = new FormControl('');
   equipos!: import('../../interfaces/equiposRoberto.interface').Sacramento[];
 
-  jugadores: Standard[] = [];
-  jugadoresFiltrados: Standard[] = [];
-  jugadoresPaginados: Standard[] = [];
+  jugadores: StandardPlayer[] = [];
+  jugadoresFiltrados: StandardPlayer[] = [];
+  jugadoresPaginados: StandardPlayer[] = [];
 
   loaded: boolean = false;
 
