@@ -59,6 +59,7 @@ export interface StandardPlayer {
   lastAffiliation: string;
   country: string;
   id: number;
+  urlFoto: string;
 }
 
 export interface TeamSitesOnly {
@@ -100,6 +101,7 @@ export interface Sacramento {
   lastAffiliation: string;
   country: string;
   id: number;
+  urlFoto: string;
 }
 
 export interface TeamSitesOnly {
@@ -141,6 +143,7 @@ export interface Vega {
   lastAffiliation: string;
   country: string;
   id: number;
+  urlFoto: string;
 }
 
 export interface TeamSitesOnly {
@@ -182,6 +185,7 @@ export interface Utah {
   lastAffiliation: string;
   country: string;
   id: number;
+  urlFoto: string;
 }
 
 export interface League {

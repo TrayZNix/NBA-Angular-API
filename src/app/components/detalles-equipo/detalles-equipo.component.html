@@ -1,31 +1,263 @@
-<div id="mainContainer">
-  <div id="envoltorio">
-    <h2>Liga estandard</h2>
-    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-      <ng-container matColumnDef="firstName">
-        <th mat-header-cell *matHeaderCellDef>Nombre</th>
-        <td mat-cell *matCellDef="let StandardPlayer">
-          {{ StandardPlayer.firstName }}&nbsp;{{ StandardPlayer.lastName }}
-        </td>
-      </ng-container>
-      <ng-container matColumnDef="jersey">
-        <th mat-header-cell *matHeaderCellDef>Numero de camiseta</th>
-        <td mat-cell *matCellDef="let StandardPlayer">
-          {{ StandardPlayer.jersey }}
-        </td>
-      </ng-container>
-      <ng-container matColumnDef="heightMeters">
-        <th mat-header-cell *matHeaderCellDef>Altura</th>
-        <td mat-cell *matCellDef="let StandardPlayer">
-          <span *ngIf="StandardPlayer.heightMeters != ''"
-            >{{ StandardPlayer.heightMeters }}&nbsp;m</span
-          >
-          <span *ngIf="StandardPlayer.heightMeters == ''">Sin datos</span>
-        </td>
-      </ng-container>
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-    </table>
+<div id="xD" onscroll="scroll($event)">
+  <div id="mainContainer">
+    <img
+      id="logoEquipo"
+      [src]="
+        'https://cdn.nba.com/logos/nba/' + equipo.teamId + '/global/L/logo.svg'
+      "
+    />
+    <div id="envoltorio">
+      <h2>Jugadores</h2>
+      <mat-tab-group mat-align-tabs="start">
+        <ng-component *ngIf="jugadoresStandard.length != 0">
+          <mat-tab label="Estandar">
+            <table
+              mat-table
+              [dataSource]="jugadoresStandard"
+              class="mat-elevation-z8"
+            >
+              <ng-container matColumnDef="urlFoto">
+                <th mat-header-cell *matHeaderCellDef></th>
+                <td mat-cell *matCellDef="let StandardPlayer">
+                  <img
+                    mat-card-sm-image
+                    [src]="StandardPlayer.urlFoto"
+                    onerror="{this.src='../../../assets/images/userNotFound.png'}"
+                  />
+                </td>
+              </ng-container>
+              <ng-container matColumnDef="jersey">
+                <th mat-header-cell *matHeaderCellDef>Numero de camiseta</th>
+                <td mat-cell *matCellDef="let StandardPlayer">
+                  {{ StandardPlayer.jersey }}
+                </td>
+              </ng-container>
+              <ng-container matColumnDef="firstName">
+                <th mat-header-cell *matHeaderCellDef>Nombre</th>
+                <td mat-cell *matCellDef="let StandardPlayer">
+                  {{ StandardPlayer.firstName }}&nbsp;{{
+                    StandardPlayer.lastName
+                  }}
+                </td>
+              </ng-container>
+              <ng-container matColumnDef="heightMeters">
+                <th mat-header-cell *matHeaderCellDef>Altura</th>
+                <td mat-cell *matCellDef="let StandardPlayer">
+                  <span *ngIf="StandardPlayer.heightMeters != ''"
+                    >{{ StandardPlayer.heightMeters }}&nbsp;m</span
+                  >
+                  <span
+                    *ngIf="
+                      StandardPlayer.heightMeters == '' &&
+                      StandardPlayer.heightFeet != '-'
+                    "
+                    >{{ StandardPlayer.heightFeet }}&nbsp;pies</span
+                  >
+                  <span
+                    *ngIf="
+                      StandardPlayer.heightMeters == '' &&
+                      StandardPlayer.heightFeet == '-'
+                    "
+                    >Sin datos</span
+                  >
+                </td>
+              </ng-container>
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+            </table>
+          </mat-tab>
+        </ng-component>
+        <ng-component *ngIf="jugadoresSacramento.length != 0">
+          <mat-tab label="Sacramento">
+            <div>
+              <table
+                mat-table
+                [dataSource]="jugadoresSacramento"
+                class="mat-elevation-z8"
+              >
+                <ng-container matColumnDef="urlFoto">
+                  <th mat-header-cell *matHeaderCellDef></th>
+                  <td mat-cell *matCellDef="let StandardPlayer">
+                    <img
+                      mat-card-sm-image
+                      [src]="StandardPlayer.urlFoto"
+                      onerror="{this.src='../../../assets/images/userNotFound.png'}"
+                    />
+                  </td>
+                </ng-container>
+                <ng-container matColumnDef="firstName">
+                  <th mat-header-cell *matHeaderCellDef>Nombre</th>
+                  <td mat-cell *matCellDef="let StandardPlayer">
+                    {{ StandardPlayer.firstName }}&nbsp;{{
+                      StandardPlayer.lastName
+                    }}
+                  </td>
+                </ng-container>
+                <ng-container matColumnDef="jersey">
+                  <th mat-header-cell *matHeaderCellDef>Numero de camiseta</th>
+                  <td mat-cell *matCellDef="let StandardPlayer">
+                    {{ StandardPlayer.jersey }}
+                  </td>
+                </ng-container>
+                <ng-container matColumnDef="heightMeters">
+                  <th mat-header-cell *matHeaderCellDef>Altura</th>
+                  <td mat-cell *matCellDef="let StandardPlayer">
+                    <span *ngIf="StandardPlayer.heightMeters != ''"
+                      >{{ StandardPlayer.heightMeters }}&nbsp;m</span
+                    >
+                    <span
+                      *ngIf="
+                        StandardPlayer.heightMeters == '' &&
+                        StandardPlayer.heightFeet != '-'
+                      "
+                      >{{ StandardPlayer.heightFeet }}&nbsp;pies</span
+                    >
+                    <span
+                      *ngIf="
+                        StandardPlayer.heightMeters == '' &&
+                        StandardPlayer.heightFeet == '-'
+                      "
+                      >Sin datos</span
+                    >
+                  </td>
+                </ng-container>
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr
+                  mat-row
+                  *matRowDef="let row; columns: displayedColumns"
+                ></tr>
+              </table>
+            </div>
+          </mat-tab>
+        </ng-component>
+        <ng-component *ngIf="jugadoresUtah.length != 0">
+          <mat-tab label="Utah">
+            <div>
+              <table
+                mat-table
+                [dataSource]="jugadoresUtah"
+                class="mat-elevation-z8"
+              >
+                <ng-container matColumnDef="urlFoto">
+                  <th mat-header-cell *matHeaderCellDef></th>
+                  <td mat-cell *matCellDef="let StandardPlayer">
+                    <img
+                      mat-card-sm-image
+                      [src]="StandardPlayer.urlFoto"
+                      onerror="{this.src='../../../assets/images/userNotFound.png'}"
+                    />
+                  </td>
+                </ng-container>
+                <ng-container matColumnDef="firstName">
+                  <th mat-header-cell *matHeaderCellDef>Nombre</th>
+                  <td mat-cell *matCellDef="let StandardPlayer">
+                    {{ StandardPlayer.firstName }}&nbsp;{{
+                      StandardPlayer.lastName
+                    }}
+                  </td>
+                </ng-container>
+                <ng-container matColumnDef="jersey">
+                  <th mat-header-cell *matHeaderCellDef>Numero de camiseta</th>
+                  <td mat-cell *matCellDef="let StandardPlayer">
+                    {{ StandardPlayer.jersey }}
+                  </td>
+                </ng-container>
+                <ng-container matColumnDef="heightMeters">
+                  <th mat-header-cell *matHeaderCellDef>Altura</th>
+                  <td mat-cell *matCellDef="let StandardPlayer">
+                    <span *ngIf="StandardPlayer.heightMeters != ''"
+                      >{{ StandardPlayer.heightMeters }}&nbsp;m</span
+                    >
+                    <span
+                      *ngIf="
+                        StandardPlayer.heightMeters == '' &&
+                        StandardPlayer.heightFeet != '-'
+                      "
+                      >{{ StandardPlayer.heightFeet }}&nbsp;pies</span
+                    >
+                    <span
+                      *ngIf="
+                        StandardPlayer.heightMeters == '' &&
+                        StandardPlayer.heightFeet == '-'
+                      "
+                      >Sin datos</span
+                    >
+                  </td>
+                </ng-container>
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr
+                  mat-row
+                  *matRowDef="let row; columns: displayedColumns"
+                ></tr>
+              </table>
+            </div>
+          </mat-tab>
+        </ng-component>
+        <ng-component *ngIf="jugadoresVegas.length != 0">
+          <mat-tab label="Vegas">
+            <div>
+              <table
+                mat-table
+                [dataSource]="jugadoresVegas"
+                class="mat-elevation-z8"
+              >
+                <ng-container matColumnDef="urlFoto">
+                  <th mat-header-cell *matHeaderCellDef></th>
+                  <td mat-cell *matCellDef="let StandardPlayer">
+                    <img
+                      mat-card-sm-image
+                      [src]="StandardPlayer.urlFoto"
+                      onerror="{this.src='../../../assets/images/userNotFound.png'}"
+                    />
+                  </td>
+                </ng-container>
+                <ng-container matColumnDef="firstName">
+                  <th mat-header-cell *matHeaderCellDef>Nombre</th>
+                  <td mat-cell *matCellDef="let StandardPlayer">
+                    {{ StandardPlayer.firstName }}&nbsp;{{
+                      StandardPlayer.lastName
+                    }}
+                  </td>
+                </ng-container>
+                <ng-container matColumnDef="jersey">
+                  <th mat-header-cell *matHeaderCellDef>Numero de camiseta</th>
+                  <td mat-cell *matCellDef="let StandardPlayer">
+                    {{ StandardPlayer.jersey }}
+                  </td>
+                </ng-container>
+                <ng-container matColumnDef="heightMeters">
+                  <th mat-header-cell *matHeaderCellDef>Altura</th>
+                  <td mat-cell *matCellDef="let StandardPlayer">
+                    <span *ngIf="StandardPlayer.heightMeters != ''"
+                      >{{ StandardPlayer.heightMeters }}&nbsp;m</span
+                    >
+                    <span
+                      *ngIf="
+                        StandardPlayer.heightMeters == '' &&
+                        StandardPlayer.heightFeet != '-'
+                      "
+                      >{{ StandardPlayer.heightFeet }}&nbsp;pies</span
+                    >
+                    <span
+                      *ngIf="
+                        StandardPlayer.heightMeters == '' &&
+                        StandardPlayer.heightFeet == '-'
+                      "
+                      >Sin datos</span
+                    >
+                  </td>
+                </ng-container>
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr
+                  mat-row
+                  *matRowDef="let row; columns: displayedColumns"
+                ></tr>
+              </table>
+            </div>
+          </mat-tab>
+        </ng-component>
+      </mat-tab-group>
+    </div>
+    <app-footer></app-footer>
   </div>
 </div>
-<app-footer></app-footer>

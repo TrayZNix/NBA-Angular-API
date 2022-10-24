@@ -8,6 +8,7 @@
   height: 100%;
   width: 100%;
   position: relative;
+  padding-top: 25%;
   padding-bottom: 175px;
 }
 #container {
@@ -39,4 +40,47 @@ footer .disclaimer {
   float: left;
   text-decoration: none;
   letter-spacing: 0.25em;
+}
+table {
+  width: 100%;
+}
+@media only screen and (min-width: 1292px) {
+  .imagenTabla {
+    width: 25%;
+  }
+}
+@media only screen and (min-width: 0px) and (max-width: 870px) {
+  .imagenTabla {
+    width: 5%;
+  }
+}
+@media only screen and (min-width: 870px) and (max-width: 1292px) {
+  .imagenTabla {
+    width: 32.5%;
+  }
+}
+.imagenTabla img {
+  display: block;
+  margin: 0;
+  width: 50%;
+  transition: 1.5s;
+}
+
+td {
+  height: 2rem;
+  margin: auto;
+  text-align: start;
+}
+td:last-child {
+  text-align: end;
+}
+
+#logoEquipo {
+  pointer-events: none;
+  position: fixed;
+  top: 0;
+  z-index: 10;
+  width: 20%;
+  transition: all 0.3s cubic-bezier(0.075, 0.82, 0.165, 1);
+  transform: translateX(0%);
 }
