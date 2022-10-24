@@ -4,19 +4,15 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MaterialImportsModule } from './Modules/material-imports.module';
+import { MaterialImportsModule } from './modules/material-imports.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { ListaEquiposComponent } from './components/lista-equipos/lista-equipos.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { EquiposModule } from './modules/equipos.module';
 
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    ListaEquiposComponent,
-
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -24,7 +20,8 @@ import { FormsModule } from '@angular/forms';
     MaterialImportsModule,
     FlexLayoutModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    EquiposModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,6 +1,6 @@
-import { XhrFactory } from '@angular/common';
+
 import { Component, OnInit } from '@angular/core';
-import { Team, TeamResponse } from 'src/app/interfaces/equipos';
+import { Team } from 'src/app/interfaces/equipos';
 import { EquiposService } from 'src/app/services/equipos.service';
 
 @Component({
@@ -11,8 +11,8 @@ import { EquiposService } from 'src/app/services/equipos.service';
 export class ListaEquiposComponent implements OnInit {
   equipos: Team[] = [];
   yearSelected = 0;
-  years: number[] = [2016, 2017, 2018, 2019, 2020, 2021, 2022];
-  gridColumns = 3;
+  years: number[] = [2022, 2021, 2020, 2019, 2018, 2017, 2016];
+
 
 
   constructor(private equiposService: EquiposService) { }
