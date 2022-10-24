@@ -16,8 +16,6 @@ import { JugadoresService } from 'src/app/services/jugadores.service';
   styleUrls: ['./jugadores.component.scss'],
 })
 export class JugadoresComponent implements OnInit {
-  equipos: import('c:/Users/rober/Desktop/2ºDAM/PMYDM/ANGULAR/NBA-Angular-API/src/app/interfaces/equiposRoberto.interface').Sacramento[] =
-    [];
   constructor(
     private jugadorService: JugadoresService,
     private equiposService: EquiposService
@@ -36,6 +34,7 @@ export class JugadoresComponent implements OnInit {
   });
   terms = new FormControl('', Validators.pattern('^[a-zA-Z]*$'));
   equipo = new FormControl('');
+  equipos!: import('../../interfaces/equiposRoberto.interface').Sacramento[];
 
   jugadores: Standard[] = [];
   jugadoresFiltrados: Standard[] = [];
