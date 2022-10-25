@@ -256,12 +256,14 @@ export class DetallesEquipoComponent implements OnInit {
   @HostListener('window:scroll')
   scroll() {
     let logo = document.getElementById('logoEquipo')!;
+    let data = document.getElementById('data')!;
     if (window.pageYOffset <= 360) {
       logo.style.setProperty('opacity', 100 - window.pageYOffset / 5 + '%');
-      logo.style.transform = 'translateX(' + window.pageYOffset + '%)'; // 124px);
+      logo.style.transform = 'translateX(' + window.pageYOffset + '%)';
+      data.style.transform = 'translateX(' + window.pageYOffset / 8 + '%)';
     } else {
       logo.style.setProperty('opacity', 100 - 400 / 5 + '%');
-      logo.style.transform = 'translateX(' + 400 + '%)'; // 124px);
+      logo.style.transform = 'translateX(' + 400 + '%)';
     }
   }
 }

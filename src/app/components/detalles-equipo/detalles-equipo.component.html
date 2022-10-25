@@ -1,22 +1,24 @@
 <div id="mainContainer" *ngIf="loaded">
-  <img
-    id="logoEquipo"
-    [src]="
-      'https://cdn.nba.com/logos/nba/' + equipo.teamId + '/global/L/logo.svg'
-    "
-  />
-  <div id="data">
-    <div fxLayout="row wrap" fxLayoutAlign="center center">
-      <h1>{{ equipo.fullName }}</h1>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <h2>
-        <em>{{ equipo.tricode }}</em>
-      </h2>
-      <img
-        id="nbaLogo"
-        src="../../../assets/images/nbaLogo.png"
-        *ngIf="equipo.isNBAFranchise"
-      />
+  <div id="postHeader">
+    <img
+      id="logoEquipo"
+      [src]="
+        'https://cdn.nba.com/logos/nba/' + equipo.teamId + '/global/L/logo.svg'
+      "
+    />
+    <div id="data">
+      <div fxLayout="row wrap" fxLayoutAlign="center center">
+        <h1>{{ equipo.fullName }}</h1>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <h2>
+          <em>{{ equipo.tricode }}</em>
+        </h2>
+        <img
+          id="nbaLogo"
+          src="../../../assets/images/nbaLogo.png"
+          *ngIf="equipo.isNBAFranchise"
+        />
+      </div>
     </div>
   </div>
   <div id="envoltorio">
@@ -262,10 +264,9 @@
       </ng-component>
     </mat-tab-group>
     <div id="lideresWrapper">
-      <div fxLayout="row wrap">
-        <mat-icon id="liderIcono">military_tech</mat-icon>
-        <h2>Lideres de equipo</h2>
-      </div>
+      <h2>
+        Lideres de equipo<mat-icon id="liderIcono">military_tech</mat-icon>
+      </h2>
       <div *ngIf="load">
         <!-- TODO Hacer que el tab sea display flex si es posible, y poner 2/3 tarjetas por fila -->
         <mat-tab-group>
@@ -407,7 +408,7 @@
                             ftp.jugador.lastName
                           }}
                         </h2>
-                        <h3>{{ ftp.value }} por partido</h3>
+                        <h3>{{ ftp.value }}% por partido</h3>
                       </div>
                     </mat-card-content></mat-card
                   >
