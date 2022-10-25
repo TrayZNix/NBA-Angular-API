@@ -1,3 +1,5 @@
+import { StandardPlayer } from './jugadores.interface';
+
 export interface _internal {
   pubDateTime: string;
   igorPath: string;
@@ -12,96 +14,103 @@ export interface _internal {
 
 export interface StandardLeaders {
   seasonStageId: number;
-  ppg: Ppg;
-  trpg: Trpg;
-  apg: Apg;
-  fgp: Fgp;
-  tpp: Tpp;
-  ftp: Ftp;
-  bpg: Bpg;
-  spg: Spg;
-  tpg: Tpg;
-  pfpg: Pfpg;
-}
-
-export class StandardLeaders {
-  constructor() {}
+  nombreLiga: string;
+  ppg: Ppg[];
+  trpg: Trpg[];
+  apg: Apg[];
+  fgp: Fgp[];
+  tpp: Tpp[];
+  ftp: Ftp[];
+  bpg: Bpg[];
+  spg: Spg[];
+  tpg: Tpg[];
+  pfpg: Pfpg[];
 }
 
 export interface AfricaLeaders {
   seasonStageId: number;
-  ppg: any[];
-  trpg: any[];
-  apg: any[];
-  fgp: any[];
-  tpp: any[];
-  ftp: any[];
-  bpg: any[];
-  spg: any[];
-  tpg: any[];
-  pfpg: any[];
+  ppg: Ppg[];
+  trpg: Trpg[];
+  apg: Apg[];
+  fgp: Fgp[];
+  tpp: Tpp[];
+  ftp: Ftp[];
+  bpg: Bpg[];
+  spg: Spg[];
+  tpg: Tpg[];
+  pfpg: Pfpg[];
 }
 
 export interface SacramentoLeaders {
   seasonStageId: number;
-  ppg: any[];
-  trpg: any[];
-  apg: any[];
-  fgp: any[];
-  tpp: any[];
-  ftp: any[];
-  bpg: any[];
-  spg: any[];
-  tpg: any[];
-  pfpg: any[];
+  ppg: Ppg[];
+  trpg: Trpg[];
+  apg: Apg[];
+  fgp: Fgp[];
+  tpp: Tpp[];
+  ftp: Ftp[];
+  bpg: Bpg[];
+  spg: Spg[];
+  tpg: Tpg[];
+  pfpg: Pfpg[];
 }
 
 export interface Ppg {
+  jugador: StandardPlayer;
   personId: string;
   value: string;
 }
 
 export interface Trpg {
+  jugador: StandardPlayer;
   personId: string;
   value: string;
 }
 
 export interface Apg {
+  jugador: StandardPlayer;
   personId: string;
   value: string;
 }
 
 export interface Fgp {
+  jugador: StandardPlayer;
   personId: string;
   value: string;
 }
 
 export interface Tpp {
+  jugador: StandardPlayer;
   personId: string;
   value: string;
 }
 
 export interface Ftp {
+  jugador: StandardPlayer;
   personId: string;
   value: string;
 }
 
 export interface Bpg {
+  jugador: StandardPlayer;
   personId: string;
   value: string;
 }
 
 export interface Spg {
+  jugador: StandardPlayer;
   personId: string;
   value: string;
 }
 
 export interface Tpg {
+  jugador: StandardPlayer;
   personId: string;
   value: string;
 }
 
 export interface Pfpg {
+  jugador: StandardPlayer;
   personId: string;
   value: string;
 }
@@ -122,24 +131,24 @@ export interface VegaLeaders {
 
 export interface UtahLeaders {
   seasonStageId: number;
-  ppg: any[];
-  trpg: any[];
-  apg: any[];
-  fgp: any[];
-  tpp: any[];
-  ftp: any[];
-  bpg: any[];
-  spg: any[];
-  tpg: any[];
-  pfpg: any[];
+  ppg: Ppg[];
+  trpg: Trpg[];
+  apg: Apg[];
+  fgp: Fgp[];
+  tpp: Tpp[];
+  ftp: Ftp[];
+  bpg: Bpg[];
+  spg: Spg[];
+  tpg: Tpg[];
+  pfpg: Pfpg[];
 }
 
 export interface League {
   standard: StandardLeaders;
-  africa: StandardLeaders;
-  sacramento: StandardLeaders;
-  vegas: StandardLeaders;
-  utah: StandardLeaders;
+  africa: AfricaLeaders;
+  sacramento: SacramentoLeaders;
+  vegas: VegaLeaders;
+  utah: UtahLeaders;
 }
 
 export interface leadersResponse {

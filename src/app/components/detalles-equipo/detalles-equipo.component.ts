@@ -1,7 +1,10 @@
 import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Standard } from 'src/app/interfaces/equiposRoberto.interface';
-import { StandardLeaders } from 'src/app/interfaces/leaders.interface';
+import {
+  StandardLeaders,
+  VegaLeaders,
+} from 'src/app/interfaces/leaders.interface';
 import { EquiposService } from 'src/app/services/equipos.service';
 import { JugadoresService } from 'src/app/services/jugadores.service';
 import { RosterService } from 'src/app/services/roster.service';
@@ -37,8 +40,10 @@ export class DetallesEquipoComponent implements OnInit {
   jugadoresUtah: StandardPlayer[] = [];
   jugadoresVegas: StandardPlayer[] = [];
 
-  lideres: StandardLeaders = new StandardLeaders();
+  lideres!: StandardLeaders[];
 
+  load: boolean = false;
+  loaded: boolean = false;
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
       this.teamName = params['teamName'];
@@ -83,9 +88,12 @@ export class DetallesEquipoComponent implements OnInit {
           this.asignarJugadores();
           this.declararTabla();
           this.actualizarLideres();
+          this.loaded = true;
         });
     });
   }
+
+  //FIN NGONINIT
 
   asignarJugadores() {
     this.jugadoresStandard = [];
@@ -138,30 +146,122 @@ export class DetallesEquipoComponent implements OnInit {
       });
     });
   }
+
+  //
+
   declararTabla() {
     this.displayedColumns = ['urlFoto', 'jersey', 'firstName', 'heightMeters'];
     this.dataSource = this.jugadoresStandard;
   }
-  @HostListener('window:scroll')
-  scroll() {
-    let logo = document.getElementById('logoEquipo')!;
-    if (window.pageYOffset <= 100 && window.pageYOffset >= 50) {
-      // logo.style.setProperty('width', window.pageYOffset - 30 + '%');
-    }
-    if (window.pageYOffset <= 360) {
-      logo.style.setProperty('opacity', 100 - window.pageYOffset / 5 + '%');
-      logo.style.transform = 'translateX(' + window.pageYOffset + '%)'; // 124px);
-    } else {
-      logo.style.setProperty('opacity', 100 - 360 / 5 + '%');
-      logo.style.transform = 'translateX(' + 360 + '%)'; // 124px);
-    }
-  }
+
+  //
 
   actualizarLideres() {
     this.equiposService
       .findRanking(this.year, this.equipo.urlName)
-      .subscribe((result) => {
-        this.lideres = result.league.standard;
+      .subscribe((results) => {
+        let lideresSacramento = results.league.sacramento as StandardLeaders;
+        lideresSacramento.nombreLiga = 'Sacramento';
+        let lideresEstandar = results.league.standard as StandardLeaders;
+        lideresEstandar.nombreLiga = 'Estandar';
+        let lideresVegas = results.league.vegas as StandardLeaders;
+        lideresVegas.nombreLiga = 'Vegas';
+        let lideresUtah = results.league.utah as StandardLeaders;
+        lideresUtah.nombreLiga = 'Utah';
+        this.lideres = [
+          lideresSacramento,
+          lideresEstandar,
+          lideresUtah,
+          lideresVegas,
+        ];
+        //Asigna el objeto jugador correspondiente a cada lider para poder llamar a sus datos desde el html
+        ////////////////////////////////////////////////////////////////////////////////
+        this.lideres.forEach((lideres) => {
+          lideres.ppg.forEach((ppg) => {
+            let jugador: StandardPlayer = this.todosJugadores.find((player) => {
+              return player.personId.includes(ppg.personId);
+            })!;
+            ppg.jugador = jugador;
+          });
+          //
+          lideres.trpg.forEach((trpg) => {
+            let jugador: StandardPlayer = this.todosJugadores.find((player) => {
+              return player.personId.includes(trpg.personId);
+            })!;
+            trpg.jugador = jugador;
+          });
+          //
+          lideres.apg.forEach((apg) => {
+            let jugador: StandardPlayer = this.todosJugadores.find((player) => {
+              return player.personId.includes(apg.personId);
+            })!;
+            apg.jugador = jugador;
+          });
+          //
+          lideres.fgp.forEach((fpg) => {
+            let jugador: StandardPlayer = this.todosJugadores.find((player) => {
+              return player.personId.includes(fpg.personId);
+            })!;
+            fpg.jugador = jugador;
+          });
+          //
+          lideres.tpp.forEach((tpp) => {
+            let jugador: StandardPlayer = this.todosJugadores.find((player) => {
+              return player.personId.includes(tpp.personId);
+            })!;
+            tpp.jugador = jugador;
+          });
+          //
+          lideres.ftp.forEach((ftp) => {
+            let jugador: StandardPlayer = this.todosJugadores.find((player) => {
+              return player.personId.includes(ftp.personId);
+            })!;
+            ftp.jugador = jugador;
+          });
+          //
+          lideres.bpg.forEach((bpg) => {
+            let jugador: StandardPlayer = this.todosJugadores.find((player) => {
+              return player.personId.includes(bpg.personId);
+            })!;
+            bpg.jugador = jugador;
+          });
+          //
+          lideres.spg.forEach((spg) => {
+            let jugador: StandardPlayer = this.todosJugadores.find((player) => {
+              return player.personId.includes(spg.personId);
+            })!;
+            spg.jugador = jugador;
+          });
+          //
+          lideres.tpg.forEach((tpg) => {
+            let jugador: StandardPlayer = this.todosJugadores.find((player) => {
+              return player.personId.includes(tpg.personId);
+            })!;
+            tpg.jugador = jugador;
+          });
+          //
+          lideres.pfpg.forEach((pfpg) => {
+            let jugador: StandardPlayer = this.todosJugadores.find((player) => {
+              return player.personId.includes(pfpg.personId);
+            })!;
+            pfpg.jugador = jugador;
+          });
+        });
+        ////////////////////////////////////////////////////////////////////////////////
+        this.load = true;
       });
+  }
+
+  //
+  @HostListener('window:scroll')
+  scroll() {
+    let logo = document.getElementById('logoEquipo')!;
+    if (window.pageYOffset <= 360) {
+      logo.style.setProperty('opacity', 100 - window.pageYOffset / 5 + '%');
+      logo.style.transform = 'translateX(' + window.pageYOffset + '%)'; // 124px);
+    } else {
+      logo.style.setProperty('opacity', 100 - 400 / 5 + '%');
+      logo.style.transform = 'translateX(' + 400 + '%)'; // 124px);
+    }
   }
 }

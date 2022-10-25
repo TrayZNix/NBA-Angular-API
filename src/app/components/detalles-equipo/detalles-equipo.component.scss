@@ -62,7 +62,7 @@ table {
 .imagenTabla img {
   display: block;
   margin: 0;
-  width: 50%;
+  width: 45% !important;
   transition: 1.5s;
 }
 td {
@@ -96,6 +96,11 @@ td {
   width: 100%;
 }
 
+#lideresWrapper {
+  margin-top: 10%;
+  width: 100%;
+}
+
 #nbaLogo {
   display: block;
   margin-left: 10%;
@@ -125,5 +130,22 @@ h3 {
 }
 #liderIcono {
   transform: scale(2.5);
-  margin-right: 5%;
+  margin-right: 2%;
+  margin-left: 1%;
+}
+mat-card {
+  width: 70%;
+  display: block;
+  margin-left: auto;
+  margin-right: 25%;
+  margin-bottom: 3%;
+  margin-top: 3%;
+  padding: 0;
+}
+mat-card-header {
+  padding-top: 2%;
+  background-color: #ed3248;
+}
+mat-card-content {
+  padding: 5%;
 }
