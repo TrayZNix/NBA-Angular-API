@@ -1,0 +1,164 @@
+<div id="mainContainer">
+  <div id="containerFiltros">
+    <form
+      [formGroup]="parametrosFiltro"
+      (ngsubmit)="submit()"
+      fxLayout="row wrap"
+      fxLayoutAlign="space-between center"
+      id="filtros"
+    >
+      <mat-form-field>
+        <mat-select
+          matInput
+          formControlName="anyo"
+          required
+          name="anyo"
+          placeholder="Año de liga"
+        >
+          <mat-option value="2022">2022</mat-option>
+          <mat-option value="2021">2021</mat-option>
+          <mat-option value="2020">2020</mat-option>
+          <mat-option value="2019">2019</mat-option>
+          <mat-option value="2018">2018</mat-option>
+          <mat-option value="2017">2017</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <div fxLayout="row" fxLayoutAlign="space-between center">
+        <div fxLayout="column" fxLayoutAlign="start start">
+          <mat-checkbox value="std" name="estandar" formControlName="std">
+            Liga estandar
+          </mat-checkbox>
+          <mat-checkbox value="std" name="sacramento" formControlName="scrm">
+            Liga Sacramento
+          </mat-checkbox>
+        </div>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <div fxLayout="column" fxLayoutAlign="start start">
+          <mat-checkbox value="std" name="utah" formControlName="utah">
+            Liga Utah
+          </mat-checkbox>
+          <mat-checkbox value="std" name="vegas" formControlName="vega">
+            Liga Vegas
+          </mat-checkbox>
+        </div>
+      </div>
+      <div fxLayout="row wrap">
+        <mat-form-field class="buscador">
+          <input
+            (ngModelChange)="filtrar_jugadores()"
+            matInput
+            type="text"
+            [formControl]="terms"
+            placeholder="Buscar por jugador"
+          />
+        </mat-form-field>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <mat-form-field class="buscador">
+          <input
+            (ngModelChange)="filtrar_jugadores()"
+            matInput
+            type="text"
+            [formControl]="equipo"
+            placeholder="Buscar por equipo"
+          />
+        </mat-form-field>
+      </div>
+      <div id="casingBotones" fxLayout="row" fxLayoutAlign="end end">
+        <button
+          (click)="resetFiltro()"
+          color="primary"
+          mat-mini-fab
+          matTooltip="Resetear filtros"
+        >
+          <mat-icon id="resetIcon">restart_alt</mat-icon>
+        </button>
+        <button
+          id="botonFiltro"
+          mat-raised-button
+          color="primary"
+          (click)="submit()"
+          [disabled]="parametrosFiltro.invalid"
+        >
+          Filtrar
+        </button>
+      </div>
+    </form>
+  </div>
+  <div id="envoltorio">
+    <div *ngIf="!loaded" id="cargador" fxLayoutAlign="center center">
+      <mat-spinner></mat-spinner>
+      <p>Cargando datos...</p>
+    </div>
+    <div
+      id="container"
+      fxLayout="row wrap"
+      fxLayoutAlign="center"
+      *ngIf="loaded"
+    >
+      <div class="paginador" *ngIf="!(jugadoresPaginados.length == 0)"></div>
+      <div *ngIf="jugadoresPaginados.length == 0">
+        <mat-card class="errorCard">
+          <mat-card-header>
+            <h1>¡Lo sentimos!</h1>
+          </mat-card-header>
+          <mat-card-content
+            fxLayout="column wrap"
+            fxLayoutAlign="center center"
+          >
+            <p>No hemos conseguido encontrar lo que buscabas</p>
+            <p>Prueba cambiando o reseteando los filtros de búsqueda :)</p>
+          </mat-card-content>
+          <mat-card-actions fxLayoutAlign="center center">
+            <button mat-raised-button color="accent" (click)="resetFiltro()">
+              Resetear filtros
+            </button>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+      <mat-card *ngFor="let player of jugadoresPaginados" class="card">
+        <mat-card-header fxLayout="column wrap" fxLayoutAlign="center center">
+          <h1 fxFlexAlign="center">
+            {{ player.firstName }} <strong>{{ player.lastName }}</strong>
+          </h1></mat-card-header
+        >
+        <mat-card-content
+          fxLayout="row nowrap"
+          fxLayoutAlign="space-between center"
+        >
+          <div>
+            <img
+              class="jugador"
+              [src]="
+                'https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/latest/260x190/' +
+                player.personId +
+                '.png'
+              "
+              onerror="{this.src='../../assets/images/userNotFound.png', this.class='errorNotFound'}"
+            />
+          </div>
+          <img
+            class="logo"
+            [src]="
+              'https://cdn.nba.com/logos/nba/' +
+              player.teamId +
+              '/global/L/logo.svg'
+            "
+          />
+        </mat-card-content>
+      </mat-card>
+    </div>
+    <div class="paginador" *ngIf="!(jugadoresPaginados.length == 0)">
+      <mat-paginator
+        *ngIf="loaded"
+        fxLayoutAlign="center end"
+        [length]="this.jugadoresFiltrados.length"
+        [pageSize]="pageEvent.pageSize"
+        (click)="paginar_jugadores()"
+        (page)="pageEvent = $event"
+        aria-label="Select page"
+      >
+      </mat-paginator>
+    </div>
+  </div>
+  <app-footer></app-footer>
+</div>
