@@ -2,6 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { TeamResponse } from '../interfaces/equipos';
+import { teamResponse } from '../interfaces/equiposRoberto.interface';
+import { playersResponse } from '../interfaces/jugadores.interface';
 
 const API_BASE_URL = 'https://data.nba.net/data/10s/prod/v1';
 
@@ -16,5 +18,3 @@ export class EquiposService {
     return this.http.get<TeamResponse>(`${API_BASE_URL}/${year}/teams.json`);
   }
 
-
-}
