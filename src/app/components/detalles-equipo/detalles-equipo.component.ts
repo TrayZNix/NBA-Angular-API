@@ -1,6 +1,7 @@
 import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Standard } from 'src/app/interfaces/equiposRoberto.interface';
+import { StandardLeaders } from 'src/app/interfaces/leaders.interface';
 import { EquiposService } from 'src/app/services/equipos.service';
 import { JugadoresService } from 'src/app/services/jugadores.service';
 import { RosterService } from 'src/app/services/roster.service';
@@ -35,6 +36,8 @@ export class DetallesEquipoComponent implements OnInit {
   jugadoresSacramento: StandardPlayer[] = [];
   jugadoresUtah: StandardPlayer[] = [];
   jugadoresVegas: StandardPlayer[] = [];
+
+  lideres: StandardLeaders = new StandardLeaders();
 
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
@@ -79,6 +82,7 @@ export class DetallesEquipoComponent implements OnInit {
           });
           this.asignarJugadores();
           this.declararTabla();
+          this.actualizarLideres();
         });
     });
   }
@@ -151,5 +155,13 @@ export class DetallesEquipoComponent implements OnInit {
       logo.style.setProperty('opacity', 100 - 360 / 5 + '%');
       logo.style.transform = 'translateX(' + 360 + '%)'; // 124px);
     }
+  }
+
+  actualizarLideres() {
+    this.equiposService
+      .findRanking(this.year, this.equipo.urlName)
+      .subscribe((result) => {
+        this.lideres = result.league.standard;
+      });
   }
 }
