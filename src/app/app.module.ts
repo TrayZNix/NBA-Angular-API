@@ -3,10 +3,11 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ImportsMaterialModule } from './modules/imports-material.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { HomepageComponent } from './components/homepage/homepage.component';
 import { HomepageModule } from './modules/homepage.module';
+import { FormsModule } from '@angular/forms';
+import { EquiposModule } from './modules/equipos.module';
 import { MaterialImportsModule } from './modules/material-imports.module';
 import { FooterComponent } from './components/footer/footer.component';
 import { FlexModule } from '@angular/flex-layout';
@@ -16,6 +17,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FooterModule } from './modules/footer.module';
 
+
 @NgModule({
   declarations: [AppComponent],
 
@@ -23,10 +25,13 @@ import { FooterModule } from './modules/footer.module';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    ImportsMaterialModule,
     FlexLayoutModule,
     HomepageModule
     MaterialImportsModule,
+    FlexLayoutModule,
+    HttpClientModule,
+    FormsModule,
+    EquiposModule
     FlexModule,
     JugadoresModule,
     HttpClientModule,
