@@ -1,0 +1,35 @@
+<app-header></app-header>
+<mat-toolbar>
+  <span>Equipos</span>
+
+  <mat-form-field>
+    <mat-label>Año</mat-label>
+    <mat-select name="year" [(ngModel)]="yearSelected">
+      <mat-option *ngFor="let year of years" [value]="year">
+        {{ year }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <button mat-raised-button (click)="botonActualizar(yearSelected)">
+    Aplicar Filtro
+  </button>
+</mat-toolbar>
+<div class="content">
+  <div fxLayout="row wrap" fxLayoutAlign="center center">
+    <div *ngFor="let equipo of equipos" fxFlex="20%">
+      <mat-card
+        class="mat-elevation-z4"
+        [routerLink]="'/' + equipo.urlName + '/' + yearSelected + '/detalles'"
+      >
+        <img
+          mat-card-image
+          [src]="getTeamImg(equipo)"
+          onerror="this.src='https://i.ibb.co/vHZ8hHz/pngegg-removebg-preview.png'"
+        />
+        <mat-card-content>
+          <h3 class="ellipsis">{{ equipo.fullName }}</h3>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>
