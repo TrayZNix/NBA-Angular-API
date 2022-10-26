@@ -1,5 +1,5 @@
 import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Standard } from 'src/app/interfaces/equiposRoberto.interface';
 import {
   StandardLeaders,
@@ -20,6 +20,7 @@ export class DetallesEquipoComponent implements OnInit {
   displayedColumns: string[] = [];
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private equiposService: EquiposService,
     private jugadoresService: JugadoresService,
     private rosterService: RosterService
@@ -56,6 +57,7 @@ export class DetallesEquipoComponent implements OnInit {
         ...result.league.utah,
         ...result.league.vegas,
       ];
+
       this.equipo = equipos.find((team) => {
         return this.teamName == team.urlName;
       }) as Standard;
@@ -70,9 +72,8 @@ export class DetallesEquipoComponent implements OnInit {
       this.todosJugadores = [...this.todosJugadores, ...result.league.utah];
       this.todosJugadores = [...this.todosJugadores, ...result.league.vegas];
 
-      this.rosterService
-        .getRoster(this.year, this.teamName)
-        .subscribe((result) => {
+      this.rosterService.getRoster(this.year, this.teamName).subscribe(
+        (result) => {
           result.league.standard.players.forEach((player) => {
             this.idStandard.push(player.personId);
           });
@@ -89,7 +90,9 @@ export class DetallesEquipoComponent implements OnInit {
           this.declararTabla();
           this.actualizarLideres();
           this.loaded = true;
-        });
+        },
+        (error) => this.router.navigate(['error'])
+      );
     });
   }
 
@@ -257,12 +260,15 @@ export class DetallesEquipoComponent implements OnInit {
   scroll() {
     let logo = document.getElementById('logoEquipo')!;
     let data = document.getElementById('data')!;
+    let ancla = document.getElementById('ancla')!;
     if (window.pageYOffset <= 360) {
       logo.style.setProperty('opacity', 100 - window.pageYOffset / 5 + '%');
       logo.style.transform = 'translateX(' + window.pageYOffset + '%)';
-      data.style.transform = 'translateX(' + window.pageYOffset / 8 + '%)';
+      ancla.style.display = 'none';
     } else {
       logo.style.setProperty('opacity', 100 - 400 / 5 + '%');
+      ancla.style.setProperty('opacity', 100 + '%');
+      ancla.style.display = 'block';
       logo.style.transform = 'translateX(' + 400 + '%)';
     }
   }

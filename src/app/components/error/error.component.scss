@@ -1,11 +1,15 @@
-img {
-  display: block;
-  margin: auto;
-  height: 80%;
+a {
+  position: absolute;
+  margin: 49%;
+  left: -3%;
+  top: -10%;
 }
 
 div {
   width: 100%;
   height: 100%;
+  background-image: url(../../../assets/images/dead_link.png);
+  background-repeat: no-repeat;
+  background-position: 49% 0%;
   background-color: #ffffff;
 }

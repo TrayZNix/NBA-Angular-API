@@ -1,11 +1,26 @@
+<div *ngIf="!loaded" id="cargador" fxLayoutAlign="center center">
+  <mat-spinner></mat-spinner>
+  <p>Cargando datos...</p>
+</div>
 <div id="mainContainer" *ngIf="loaded">
   <div id="postHeader">
-    <img
-      id="logoEquipo"
-      [src]="
-        'https://cdn.nba.com/logos/nba/' + equipo.teamId + '/global/L/logo.svg'
-      "
-    />
+    <div id="loco">
+      <img
+        id="logoEquipo"
+        [src]="
+          'https://cdn.nba.com/logos/nba/' +
+          equipo.teamId +
+          '/global/L/logo.svg'
+        "
+      />
+      <div id="ancla">
+        <a
+          mat-icon-button
+          [href]="'/' + equipo.urlName + '/' + year + '/detalles#data'"
+          ><mat-icon>north</mat-icon></a
+        >
+      </div>
+    </div>
     <div id="data">
       <div fxLayout="row wrap" fxLayoutAlign="center center">
         <h1>{{ equipo.fullName }}</h1>
@@ -285,12 +300,12 @@
                 liga.pfpg.length != 0
               "
             >
-              <div
-                id="wrapperTab"
-                fxLayout="row wrap"
-                fxLayoutAlign="center center"
-              >
-                <mat-tab [label]="liga.nombreLiga">
+              <mat-tab [label]="liga.nombreLiga">
+                <div
+                  id="wrapperTab"
+                  fxLayout="row wrap"
+                  fxLayoutAlign="center center"
+                >
                   <mat-card *ngFor="let ppg of liga.ppg">
                     <mat-card-header><h1>Lider de puntos</h1></mat-card-header>
                     <mat-card-content
@@ -493,8 +508,8 @@
                       </div></mat-card-content
                     ></mat-card
                   >
-                </mat-tab>
-              </div>
+                </div>
+              </mat-tab>
             </ng-component>
           </ng-component>
         </mat-tab-group>
