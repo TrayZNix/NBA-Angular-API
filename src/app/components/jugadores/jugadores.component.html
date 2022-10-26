@@ -116,7 +116,11 @@
           </mat-card-actions>
         </mat-card>
       </div>
-      <mat-card *ngFor="let player of jugadoresPaginados" class="card">
+      <mat-card
+        *ngFor="let player of jugadoresPaginados"
+        class="card"
+        [routerLink]="'/' + player.personId + '/' + year + '/estadisticas'"
+      >
         <mat-card-header fxLayout="column wrap" fxLayoutAlign="center center">
           <h1 fxFlexAlign="center">
             {{ player.firstName }} <strong>{{ player.lastName }}</strong>
