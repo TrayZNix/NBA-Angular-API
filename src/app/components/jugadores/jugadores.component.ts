@@ -92,7 +92,7 @@ export class JugadoresComponent implements OnInit {
     });
   }
   actualizarEquipos() {
-    this.equiposService.findAllTeams(this.year).subscribe((results) => {
+    this.equiposService.getTeams(this.year).subscribe((results) => {
       this.equipos = [
         ...results.league.sacramento,
         ...results.league.standard,
