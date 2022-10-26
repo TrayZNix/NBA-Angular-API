@@ -19,17 +19,11 @@ import { ErrorComponent } from './components/error/error.component';
 import { ErrorModule } from './modules/error.module';
 import { HeaderComponent } from './components/header/header.component';
 import { HeaderModule } from './modules/header.module';
-import { EstadisticasComponent } from './estadisticas/estadisticas.component';
+import { EstadisticasComponent } from './components/estadisticas/estadisticas.component';
 import { EstadisticasModule } from './modules/estadisticas.module';
 
-
 @NgModule({
-  declarations: [
-    AppComponent,
-
-
-
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -42,14 +36,13 @@ import { EstadisticasModule } from './modules/estadisticas.module';
     EquiposModule,
     FooterModule,
     HomepageModule,
-    JugadoresModule
+    JugadoresModule,
     DetallesEquipoModule,
     ErrorModule,
     HeaderModule,
     EstadisticasModule,
-
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

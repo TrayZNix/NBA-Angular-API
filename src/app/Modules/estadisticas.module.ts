@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { EstadisticasComponent } from '../estadisticas/estadisticas.component';
+import { EstadisticasComponent } from '../components/estadisticas/estadisticas.component';
 import { MaterialImportsModule } from './material-imports.module';
 import { FlexModule } from '@angular/flex-layout';
 import { HeaderModule } from './header.module';

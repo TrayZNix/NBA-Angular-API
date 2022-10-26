@@ -8,15 +8,20 @@ import { AppRoutingModule } from '../app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { SingleTeamComponent } from '../components/single-team/single-team.component';
 import { SingleTeamModule } from './single-team.module';
-
-
+import { HeaderModule } from './header.module';
 
 @NgModule({
   declarations: [ListaEquiposComponent],
-  imports: [CommonModule, MaterialImportsModule, FlexLayoutModule, FormsModule, AppRoutingModule, BrowserModule, SingleTeamModule],
-  exports: [ListaEquiposComponent]
-=======
-import { HeaderModule } from './header.module';
-
+  imports: [
+    CommonModule,
+    MaterialImportsModule,
+    FlexLayoutModule,
+    FormsModule,
+    AppRoutingModule,
+    BrowserModule,
+    SingleTeamModule,
+    HeaderModule,
+  ],
+  exports: [ListaEquiposComponent],
 })
 export class EquiposModule {}

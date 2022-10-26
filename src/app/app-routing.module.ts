@@ -6,7 +6,7 @@ import { ErrorComponent } from './components/error/error.component';
 import { JugadoresComponent } from './components/jugadores/jugadores.component';
 import { DetallesEquipoModule } from './modules/detalles-equipo.module';
 import { HomepageComponent } from './components/homepage/homepage.component';
-import { EstadisticasComponent } from './estadisticas/estadisticas.component';
+import { EstadisticasComponent } from './components/estadisticas/estadisticas.component';
 
 const routes: Routes = [
   { path: '', component: HomepageComponent },

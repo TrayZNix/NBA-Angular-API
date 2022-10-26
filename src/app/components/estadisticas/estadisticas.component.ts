@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Route } from '@angular/router';
-import { CareerSummary } from '../interfaces/estadisticas.interface';
-import { JugadoresService } from '../services/jugadores.service';
+import { CareerSummary } from '../../interfaces/estadisticas.interface';
+import { JugadoresService } from '../../services/jugadores.service';
 
 @Component({
   selector: 'app-estadisticas',
