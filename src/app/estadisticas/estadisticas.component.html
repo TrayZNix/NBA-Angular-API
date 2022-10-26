@@ -1,0 +1,58 @@
+<app-header></app-header>
+<div id="mainContainer">
+  <div id="envoltorio" fxLayout="column wrap" fxLayoutAlign="center center">
+    <h2>Datos de media por partido</h2>
+    <div fxLayoutAlign="center center">
+      <table class="styled-table">
+        <tr>
+          <th>Puntos</th>
+          <th>Rebotes</th>
+          <th>Asistencias</th>
+          <th>Bloqueos</th>
+          <th>Minutos</th>
+          <th>Robos</th>
+        </tr>
+        <tr>
+          <td>{{ playerStats.ppg }}</td>
+          <td>{{ playerStats.rpg }}</td>
+          <td>{{ playerStats.apg }}</td>
+          <td>{{ playerStats.bpg }}</td>
+          <td>{{ playerStats.mpg }}</td>
+          <td>{{ playerStats.spg }}</td>
+        </tr>
+      </table>
+    </div>
+    <h2>Datos de totales</h2>
+    <div fxLayoutAlign="center center">
+      <table class="styled-table">
+        <thead>
+          <tr>
+            <th>Tiros de campo</th>
+            <th>Tiros triples</th>
+            <th>Tiros libres</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{{ playerStats.fga }}</td>
+            <td>{{ playerStats.tpa }}</td>
+            <td>{{ playerStats.fta }}</td>
+          </tr>
+          <tr>
+            <td>{{ playerStats.fgm }}</td>
+            <td>{{ playerStats.tpm }}</td>
+            <td>{{ playerStats.ftm }}</td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <th>Tiros de campo encestados</th>
+            <th>Tiros triples encestados</th>
+            <th>Tiros libres encestados</th>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>

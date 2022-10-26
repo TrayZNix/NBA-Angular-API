@@ -22,6 +22,8 @@ import { ErrorComponent } from './components/error/error.component';
 import { ErrorModule } from './modules/error.module';
 import { HeaderComponent } from './components/header/header.component';
 import { HeaderModule } from './modules/header.module';
+import { EstadisticasComponent } from './estadisticas/estadisticas.component';
+import { EstadisticasModule } from './modules/estadisticas.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -45,6 +47,7 @@ import { HeaderModule } from './modules/header.module';
     DetallesEquipoModule,
     ErrorModule,
     HeaderModule,
+    EstadisticasModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

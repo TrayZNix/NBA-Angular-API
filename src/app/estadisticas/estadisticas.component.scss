@@ -1,0 +1,39 @@
+#mainContainer {
+  position: relative;
+  width: 100%;
+  height: max;
+}
+#envoltorio {
+  height: 100%;
+  width: 100%;
+  position: relative;
+  padding-top: 5%;
+  padding-bottom: 175px;
+}
+
+#envoltorio div {
+  width: 100%;
+}
+.styled-table {
+  width: 50%;
+  text-align: center;
+  border-collapse: collapse;
+  margin: 25px 0;
+  font-size: 0.9em;
+  font-family: sans-serif;
+  min-width: 400px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+h2 {
+  font-size: 2rem;
+}
+th {
+  padding: 2%;
+  font-size: 1.25rem;
+}
+
+td {
+  padding: 2%;
+  font-size: 1rem;
+}
