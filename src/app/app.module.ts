@@ -13,6 +13,12 @@ import { EquiposModule } from './modules/equipos.module';
 import { FooterModule } from './modules/footer.module';
 import { JugadoresModule } from './modules/jugadores.module';
 import { MaterialImportsModule } from './modules/material-imports.module';
+import { DetallesEquipoComponent } from './components/detalles-equipo/detalles-equipo.component';
+import { DetallesEquipoModule } from './modules/detalles-equipo.module';
+import { ErrorComponent } from './components/error/error.component';
+import { ErrorModule } from './modules/error.module';
+import { HeaderComponent } from './components/header/header.component';
+import { HeaderModule } from './modules/header.module';
 
 
 @NgModule({
@@ -35,11 +41,9 @@ import { MaterialImportsModule } from './modules/material-imports.module';
     FooterModule,
     HomepageModule,
     JugadoresModule
-
-
-
-
-
+    DetallesEquipoModule,
+    ErrorModule,
+    HeaderModule,
 
   ],
   providers: [],

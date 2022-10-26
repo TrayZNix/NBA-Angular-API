@@ -15,5 +15,8 @@ import { SingleTeamModule } from './single-team.module';
   declarations: [ListaEquiposComponent],
   imports: [CommonModule, MaterialImportsModule, FlexLayoutModule, FormsModule, AppRoutingModule, BrowserModule, SingleTeamModule],
   exports: [ListaEquiposComponent]
+=======
+import { HeaderModule } from './header.module';
+
 })
-export class EquiposModule { }
+export class EquiposModule {}
