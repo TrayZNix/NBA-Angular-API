@@ -50,7 +50,7 @@ export class DetallesEquipoComponent implements OnInit {
       this.teamName = params['teamName'];
       this.year = params['year'];
     });
-    this.equiposService.findAllTeams(this.year).subscribe((result) => {
+    this.equiposService.getTeams(this.year).subscribe((result) => {
       let equipos = [
         ...result.league.standard,
         ...result.league.sacramento,

@@ -19,7 +19,7 @@ export class EquiposService {
   }
   findRanking(year: number, name: string): Observable<leadersResponse> {
     return this.http.get<leadersResponse>(
-      `${API_BASE_URL}/data/10s/prod/v1/${year}/teams/${name}/leaders.json`
+      `${API_BASE_URL}/${year}/teams/${name}/leaders.json`
     );
   }
 }
