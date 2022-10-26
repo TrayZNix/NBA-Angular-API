@@ -1,4 +1,4 @@
-​# NBApi
+# NBApi
 
 NBApi es un aplicación web con la que puedes consultar de manera cómoda y sencilla los últimos datos de los equipos y jugadores de la NBA, haciendo uso de la siguiente [API](https://github.com/kshvmdn/nba.js/blob/master/docs/api/DATA.md), con la cual conseguimos recopilar los datos necesarios para nuestra app.
 Además, hemos recopilado imágenes de la BBDD de la página oficial de NBA, por lo que las imágenes estarán completamente actualizadas
