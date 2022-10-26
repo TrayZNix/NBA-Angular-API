@@ -16,6 +16,10 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FooterModule } from './modules/footer.module';
+import { DetallesEquipoComponent } from './components/detalles-equipo/detalles-equipo.component';
+import { DetallesEquipoModule } from './modules/detalles-equipo.module';
+import { ErrorComponent } from './components/error/error.component';
+import { ErrorModule } from './modules/error.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -36,6 +40,8 @@ import { FooterModule } from './modules/footer.module';
     HttpClientModule,
     ReactiveFormsModule,
     FooterModule,
+    DetallesEquipoModule,
+    ErrorModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
