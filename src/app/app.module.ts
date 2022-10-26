@@ -20,6 +20,8 @@ import { DetallesEquipoComponent } from './components/detalles-equipo/detalles-e
 import { DetallesEquipoModule } from './modules/detalles-equipo.module';
 import { ErrorComponent } from './components/error/error.component';
 import { ErrorModule } from './modules/error.module';
+import { HeaderComponent } from './components/header/header.component';
+import { HeaderModule } from './modules/header.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -42,6 +44,7 @@ import { ErrorModule } from './modules/error.module';
     FooterModule,
     DetallesEquipoModule,
     ErrorModule,
+    HeaderModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

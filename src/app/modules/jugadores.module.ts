@@ -8,6 +8,7 @@ import { JugadoresService } from '../services/jugadores.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FooterModule } from './footer.module';
+import { HeaderModule } from './header.module';
 
 @NgModule({
   declarations: [JugadoresComponent],
@@ -18,6 +19,7 @@ import { FooterModule } from './footer.module';
     HttpClientModule,
     ReactiveFormsModule,
     FooterModule,
+    HeaderModule,
   ],
   providers: [JugadoresService],
   exports: [JugadoresComponent],

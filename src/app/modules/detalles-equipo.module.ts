@@ -6,6 +6,7 @@ import { MaterialImportsModule } from './material-imports.module';
 import { HttpClientModule } from '@angular/common/http';
 import { FlexModule } from '@angular/flex-layout';
 import { FooterModule } from './footer.module';
+import { HeaderModule } from './header.module';
 
 @NgModule({
   declarations: [DetallesEquipoComponent],
@@ -16,6 +17,7 @@ import { FooterModule } from './footer.module';
     HttpClientModule,
     FlexModule,
     FooterModule,
+    HeaderModule,
   ],
   exports: [DetallesEquipoComponent],
 })

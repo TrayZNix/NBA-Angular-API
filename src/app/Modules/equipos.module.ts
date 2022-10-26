@@ -6,12 +6,19 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from '../app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
-
-
+import { HeaderModule } from './header.module';
 
 @NgModule({
   declarations: [ListaEquiposComponent],
-  imports: [CommonModule, MaterialImportsModule, FlexLayoutModule, FormsModule, AppRoutingModule, BrowserModule],
-  exports: [ListaEquiposComponent]
+  imports: [
+    CommonModule,
+    MaterialImportsModule,
+    FlexLayoutModule,
+    FormsModule,
+    AppRoutingModule,
+    BrowserModule,
+    HeaderModule,
+  ],
+  exports: [ListaEquiposComponent],
 })
-export class EquiposModule { }
+export class EquiposModule {}
