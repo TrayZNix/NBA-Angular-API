@@ -5,25 +5,10 @@ import { JugadoresComponent } from './components/jugadores/jugadores.component';
 import { HomepageComponent } from './components/homepage/homepage.component';
 
 const routes: Routes = [
-  {path: '', component: HomepageComponent }
-  //{path: 'jugadores', component: ListaJugadoresComponent}
-  //{path: 'equipos', component: ListaEquiposComponent}
+  { path: '', component: HomepageComponent },
+  { path: 'equipos', component: ListaEquiposComponent },
+  { path: 'jugadores', component: JugadoresComponent },
 ];
-
-
-
-
-
-const routes: Routes = [
-  {path: '', component: HomepageComponent }
-  {path: 'equipos', component: ListaEquiposComponent}
-  { path: 'jugadores', component: JugadoresComponent }
-];
-
-
-
-
-
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

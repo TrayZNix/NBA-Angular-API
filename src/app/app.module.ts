@@ -17,7 +17,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FooterModule } from './modules/footer.module';
 
-
 @NgModule({
   declarations: [AppComponent],
 
@@ -26,12 +25,12 @@ import { FooterModule } from './modules/footer.module';
     AppRoutingModule,
     BrowserAnimationsModule,
     FlexLayoutModule,
-    HomepageModule
+    HomepageModule,
     MaterialImportsModule,
     FlexLayoutModule,
     HttpClientModule,
     FormsModule,
-    EquiposModule
+    EquiposModule,
     FlexModule,
     JugadoresModule,
     HttpClientModule,
