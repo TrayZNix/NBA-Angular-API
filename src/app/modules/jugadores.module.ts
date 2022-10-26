@@ -9,6 +9,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FooterModule } from './footer.module';
 import { HeaderModule } from './header.module';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [JugadoresComponent],
@@ -20,6 +21,7 @@ import { HeaderModule } from './header.module';
     ReactiveFormsModule,
     FooterModule,
     HeaderModule,
+    RouterModule,
   ],
   providers: [JugadoresService],
   exports: [JugadoresComponent],

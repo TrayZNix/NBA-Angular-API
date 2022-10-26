@@ -6,6 +6,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from '../app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
+import { SingleTeamComponent } from '../components/single-team/single-team.component';
+import { SingleTeamModule } from './single-team.module';
 import { HeaderModule } from './header.module';
 
 @NgModule({
@@ -17,6 +19,7 @@ import { HeaderModule } from './header.module';
     FormsModule,
     AppRoutingModule,
     BrowserModule,
+    SingleTeamModule,
     HeaderModule,
   ],
   exports: [ListaEquiposComponent],

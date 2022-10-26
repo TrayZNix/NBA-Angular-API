@@ -15,21 +15,10 @@
   </button>
 </mat-toolbar>
 <div class="content">
-  <div fxLayout="row wrap" fxLayoutAlign="center center">
-    <div *ngFor="let equipo of equipos" fxFlex="20%">
-      <mat-card
-        class="mat-elevation-z4"
-        [routerLink]="'/' + equipo.urlName + '/' + yearSelected + '/detalles'"
-      >
-        <img
-          mat-card-image
-          [src]="getTeamImg(equipo)"
-          onerror="this.src='https://i.ibb.co/vHZ8hHz/pngegg-removebg-preview.png'"
-        />
-        <mat-card-content>
-          <h3 class="ellipsis">{{ equipo.fullName }}</h3>
-        </mat-card-content>
-      </mat-card>
-    </div>
+  <div fxLayout="row wrap" fxLayoutAlign = "center center">
+
+      <app-single-team *ngFor="let equipo of equipos" [singleTeam]="equipo"></app-single-team>
+
+
   </div>
 </div>

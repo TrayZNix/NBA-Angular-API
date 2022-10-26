@@ -6,12 +6,14 @@ import { ErrorComponent } from './components/error/error.component';
 import { JugadoresComponent } from './components/jugadores/jugadores.component';
 import { DetallesEquipoModule } from './modules/detalles-equipo.module';
 import { HomepageComponent } from './components/homepage/homepage.component';
+import { EstadisticasComponent } from './components/estadisticas/estadisticas.component';
 
 const routes: Routes = [
   { path: '', component: HomepageComponent },
   { path: 'equipos', component: ListaEquiposComponent },
   { path: 'jugadores', component: JugadoresComponent },
   { path: ':teamName/:year/detalles', component: DetallesEquipoComponent },
+  { path: ':personId/:year/estadisticas', component: EstadisticasComponent },
   { path: '**', component: ErrorComponent },
 ];
 
